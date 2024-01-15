@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate.entity.Pintor" table="pintor">
+        <id name="id" column="id" type="integer"/>
+        <property name="nombre"/>
+        <property name="apellidos"/>
+        <property name="numCuadros"/>
+
+        <!--Relaciones-->
+        <!-- 1 a 1 con el estudio-->
+        <one-to-one name="estudio" cascade="all"/>
+
+        <!--Many to one con el agente-->
+        <many-to-one name="agente">
+            <column name="idAgente"/>   <!--Hace referencia al id del agente en la tabla agente-->
+        </many-to-one>
+
+        <!--Uno a varios con los cuadros-->
+        <list name="cuadros" cascade="all" inverse="false">
+            <key>
+                <column name="idPintor"/>
+            </key>
+            <list-index>
+                <column name="indice"/>  <!--Le pasamos la variable con el indice del orden-->
+            </list-index>
+            <one-to-many class="hibernate.entity.Cuadro"/>  <!--Hace referencia a la clase q vamos a establcer la relacion-->
+        </list>
+
+
+    </class>
+</hibernate-mapping>

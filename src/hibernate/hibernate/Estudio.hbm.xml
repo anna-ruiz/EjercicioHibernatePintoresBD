@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="hibernate.entity.Estudio" table="estudio">
+        <id name="id" column="id" type="integer"/>
+        <property name="calle"/>
+        <property name="numero"/>
+        <property name="cp"/>
+        <property name="localidad"/>
+
+        <!--Relaciones-->
+        <one-to-one name="pintor" cascade="all"/>
+
+    </class>
+</hibernate-mapping>

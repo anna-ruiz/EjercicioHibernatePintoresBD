@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate.entity.Agente" table="agente"> <!--La tabla debe coincidir con la tabla en la BD-->
+
+        <!--Atributos-->
+        <id name="id" column="id" type="integer"/>
+        <property name="nombre"/>
+        <property name="numClientes"/>
+
+        <!--Relaciones-->
+        <!--One to Many desordenada-->
+        <set name="pintores" cascade="all" inverse="true">
+            <key>
+                <column name="idAgente"/> <!--La columna en la q esta la clave ajena-->
+            </key>
+            <one-to-many class="hibernate.entity.Pintor"/> <!--Le decimos la clase con la q hacemos la relacion-->
+
+        </set>
+
+    </class>
+</hibernate-mapping>
